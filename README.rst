@@ -10,6 +10,6 @@ working with a clone of the repository you can report, list and fix bugs
 directly from the source tree.
 
 .. _email: jnrowe@gmail.com
-.. _issue: http://github.com/JNRowe/jnrowe.github.com/issues
+.. _issue: http://github.com/JNRowe/local-bin/issues
 .. _ditz: http://ditz.rubyforge.org/
 
