@@ -1,0 +1,19 @@
+#! /bin/sh
+# Display a fancy countdown timer, using jwz's excellent xdaliclock.  The
+# duration is parsed by date(1), so supports whatever your platform's date(1)
+# can handle.
+
+if [ "$1" == "-f" ]
+then
+    fullscreen=-fullscreen
+    shift
+fi
+
+if [ -z "${1}" ]
+then
+    echo "xtimer [-f] <date>"
+    exit 1
+fi
+
+trigger=$(date -d "${@}" '+%b %d %H:%M:%S %Y')
+xdaliclock -cycle ${fullscreen} -countdown "${trigger}"
