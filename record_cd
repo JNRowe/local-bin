@@ -1,0 +1,9 @@
+#! /bin/sh
+# Quickly burn a CD of the specified directory, or cdrom if no directory is
+# specified.
+
+location=${1:-cdrom}
+size=$(mkisofs -R -J -print-size ${location})
+mkisofs -R -J ${location} 2>/dev/null \
+    | cdrecord -v driveropts=burnfree fs=15m padsize=63s -pad \
+        tsize=${size}s dev=/dev/cdrw1 -
