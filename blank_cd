@@ -1,0 +1,4 @@
+#! /bin/sh
+# Blank the CD in /dev/cdrw1, fast mode by default.
+
+cdrecord -v dev=/dev/cdrw1 blank=${1:-fast}
