@@ -1,0 +1,15 @@
+#! /bin/zsh
+# Read all files from specified media to check for faults.  This isn't a great
+# way to check for faults, but it quickly shows up disks that need more
+# inspection.
+
+media=${${1:-/mnt/cdrom}/%\/}
+if grep -q $media /proc/mounts
+then
+    mounted=1
+else
+    mounted=0
+    mount ${media} || exit $?
+fi
+find ${media} -type f -print0 | xargs -0 md5sum >/dev/null || exit $?
+[ $mounted == 0 ] && umount ${media} || true
