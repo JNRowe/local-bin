@@ -1,0 +1,8 @@
+#! /bin/sh
+# Display date and time of DST change for specified location, or system's
+# timezone if none specified.
+
+# /usr/sbin isn't normally in my path, but zdump *may* be there.
+PATH=$PATH:/usr/sbin
+
+zdump -v ${1:-$(</etc/timezone)} | grep $(date '+%Y')
