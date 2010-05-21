@@ -1,0 +1,18 @@
+#! /bin/sh 
+# Clone a mercurial repositary, storing a local tarball of the repositary.
+
+# This is where I store files to be archived, the name is just a throwback to
+# the olde world.
+ARCHIVE_DIR=/mnt/cdrom_pending/mercurial-packages
+
+url=$1
+proj=${2:-${1##*/})}
+if [ -z "${url}" ]
+then
+    echo "clonehg <url> [proj]"
+    exit 1
+fi
+hg clone -U ${url} ${proj} || exit 1
+[ ! -d ${ARCHIVE_DIR} ] && mkdir ${ARCHIVE_DIR}
+tar --create --bzip2 --file=${ARCHIVE_DIR}/${proj}-$(date -I).hg.tar ${proj}
+cd ${proj} && hg checkout && cd ~-
