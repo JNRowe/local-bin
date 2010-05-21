@@ -1,0 +1,11 @@
+#! /bin/sh
+# Fire up an application, and show a popup notification.  This is mainly used
+# for wrapping commands started with keybindings that take some time to show
+# activity.
+
+[ -z "$1" ] && exit 1
+app=$1
+shift
+notify-send -u low -i applications-other "Application starting" \
+    "${NAME:-${app##*/}}" &
+${app} $@
