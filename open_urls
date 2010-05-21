@@ -1,0 +1,26 @@
+#! /bin/sh
+# Open specified links in browsers, defaulting to the contents of ~/urls if none
+# specified.
+
+if [ ${#@} -eq 0 ]
+then
+    for i in $(< ~/urls)
+    do
+        xdg-open "$i"
+        # Browser occasionally swallows messages when they arrive too fast.
+        sleep 0.25s
+    done
+else
+    for i in $@
+    do
+        filename=$(readlink -nf $i)
+        if [ -z "${filename}" ]
+        then
+            xdg-open "${i}"
+        else
+            xdg-open "${filename}"
+        fi
+        # Browser occasionally swallows messages when they arrive too fast.
+        sleep 0.25s
+    done
+fi
