@@ -3,7 +3,7 @@
 
 # This is where I store files to be archived, the name is just a throwback to
 # the olde world.
-ARCHIVE_DIR=/mnt/cdrom_pending/mercurial-packages
+ARCHIVE_DIR=/mnt/cdrom_pending/git-packages
 
 url=$1
 proj=${${2:-${1##*/}}/%.git}
