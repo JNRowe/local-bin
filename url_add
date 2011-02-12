@@ -6,4 +6,5 @@
 [ -z "${url}" ] && exit 1
 ftype=${${0:t}%_*}s
 echo "${url}" >> ~/${ftype}
-notify-send -u low -t 2000 -i emblem-web "Added to ${ftype}" "${url}"
+notify-send -u low -t 2000 -i emblem-web "Added to ${ftype}" \
+    "${${${url//&/&amp;}//</&lt;}//>/&gt;}"
