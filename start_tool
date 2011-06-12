@@ -8,4 +8,4 @@ app=$1
 shift
 notify-send -u low -i applications-other "Application starting" \
     "${NAME:-${app##*/}}" &
-${app} $@
+exec ${app} $@
