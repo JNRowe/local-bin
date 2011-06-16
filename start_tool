@@ -3,9 +3,11 @@
 # for wrapping commands started with keybindings that take some time to show
 # activity.
 
+source $(dirname $(readlink -f ${0}))/tool_settings.sh
+
 [ -z "$1" ] && exit 1
 app=$1
 shift
-notify-send -u low -i applications-other "Application starting" \
-    "${NAME:-${app##*/}}" &
+dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT} \
+    <<< "${NAME:-${app##*/}} starting" &
 exec ${app} $@
