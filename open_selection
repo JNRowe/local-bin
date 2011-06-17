@@ -6,10 +6,8 @@ source $(dirname $(readlink -f ${0}))/tool_settings.sh
 link=$(xsel)
 if [ -z "${link}" ]
 then
-    dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT} \
-        <<< "No text in selection"
+    dzen_text <<< "No text in selection"
 else
-    dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT} \
-        <<< "Opening link from selection - ${link}"
+    dzen_text <<< "Opening link from selection - ${link}"
     xdg-open "${link}"
 fi

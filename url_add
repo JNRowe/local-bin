@@ -9,5 +9,4 @@ source $(dirname $(readlink -f ${0}))/tool_settings.sh
 [ -z "${url}" ] && exit 1
 ftype=${${0:t}%_*}s
 echo "${url}" >> ~/${ftype}
-dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT} \
-    <<< "${url} added to ${ftype}" &
+dzen_text <<< "${url} added to ${ftype}"

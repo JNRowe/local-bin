@@ -5,11 +5,9 @@
 source $(dirname $(readlink -f ${0}))/tool_settings.sh
 
 brew() {
-    dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT} \
-        <<< "Brewing tea - Sit back and relax"
+    dzen_text <<< "Brewing tea - Sit back and relax"
     sleep ${1}m
-    dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT} \
-        <<< "Tea ready - Go and get it"
+    dzen_text <<< "Tea ready - Go and get it"
 }
 
 case "${1}" in
@@ -21,7 +19,6 @@ ginger)
     brew 3.5 ;;
 *)
     for i in {1..3}; do echo -e '\007'; sleep 0.25s; done &
-    dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT} \
-        <<< "tea.sh - ^fg(#ff0000)Unknown tea type"
+    dzen_text <<< "tea.sh - ^fg(#ff0000)Unknown tea type"
     exit 1
 esac

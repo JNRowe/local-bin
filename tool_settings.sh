@@ -8,3 +8,7 @@ _gen_font_string() {
 FONT=$(_gen_font_string)
 SMALL_FONT=$(_gen_font_string 14)
 TIMEOUT=3
+
+dzen_text() {
+    dzen2 -fg ${FOREGROUND} -bg ${BACKGROUND} -fn ${FONT} -p ${TIMEOUT}
+}
