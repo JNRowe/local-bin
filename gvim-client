@@ -1,0 +1,23 @@
+#! /bin/sh
+
+# Use existing vim sessions to open new files, if at all possible.  This is a
+# much nicer way to work that heaps of gvim windows, opening everything with :e
+# or having to manual specify all the --remote stuff.
+
+SERVERNAME=GVIM
+
+base=${0##*/}
+editor=${base%-client}
+if [ "${editor}" == "vim" ]
+then
+    flags="--remote-wait"
+else
+    flags="--remote"
+fi
+
+if $(${editor} --serverlist | grep -q ${SERVERNAME})
+then
+    exec ${editor} --servername ${SERVERNAME} ${flags} $@
+else
+    exec ${editor} $@
+fi
