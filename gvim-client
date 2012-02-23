@@ -8,6 +8,13 @@ SERVERNAME=GVIM
 
 base=${0##*/}
 editor=${base%-client}
+
+# If it looks like we're passing in options, just call the editor directly.
+if [ "${1::1}" == "-" ]
+then
+    exec ${editor} $@
+fi
+
 if [ "${editor}" == "vim" ]
 then
     flags="--remote-wait"
